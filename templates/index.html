@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moodify - Music for your mood</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Moodify</h1>
+            <p class="tagline">Let your feelings guide your playlist</p>
+        </header>
+
+        <main>
+            {% if is_authenticated %}
+                <div class="mood-input">
+                    <h2>How are you feeling today?</h2>
+                    <form action="{{ url_for('process_mood') }}" method="post">
+                        <textarea name="mood_text" id="mood_text" rows="4" placeholder="Describe how you're feeling..."></textarea>
+                        <button type="submit" class="btn primary-btn">Find My Music</button>
+                    </form>
+                </div>
+            {% else %}
+                <div class="login-section">
+                    <h2>Connect with Spotify to get started</h2>
+                    <p>We'll analyze your mood and suggest the perfect songs for how you're feeling.</p>
+                    <a href="{{ url_for('login') }}" class="btn spotify-btn">Connect with Spotify</a>
+                </div>
+            {% endif %}
+        </main>
+
+        <footer>
+            <p>Premium users can play music directly in the browser. Free users will be directed to Spotify.</p>
+            {% if is_authenticated %}
+                <a href="{{ url_for('logout') }}" class="btn outline-btn">Logout</a>
+            {% endif %}
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='javascript/index.js') }}"></script>
+</body>
+</html>

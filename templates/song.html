@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moodify - Your {{ mood }} Songs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/song.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="{{ url_for('main') }}" class="back-btn">← Back</a>
+            <h1>Moodify</h1>
+        </header>
+
+        <div class="mood-section">
+            <h2>Songs for your mood: <span class="mood-text">{{ mood }}</span></h2>
+            <p class="user-input">"{{ mood_text }}"</p>
+        </div>
+
+        <main>
+            <!-- Player will be dynamically populated by JS -->
+            <div id="spotify-player" class="player-area"></div>
+
+            <div class="tracks-container">
+                <div class="tracks-list">
+                    {% for track in tracks %}
+                    <div class="track-card" data-track-id="{{ track.id }}">
+                        <div class="track-image">
+                            {% if track.image %}
+                            <img src="{{ track.image }}" alt="{{ track.name }}" loading="lazy">
+                            {% else %}
+                            <div class="no-image">🎵</div>
+                            {% endif %}
+                        </div>
+                        <div class="track-info">
+                            <h3 class="track-name">{{ track.name }}</h3>
+                            <p class="track-artist">{{ track.artist }}</p>
+                            <p class="track-album">{{ track.album }}</p>
+                            {% if track.preview_url %}
+                            <audio class="track-preview" src="{{ track.preview_url }}" preload="none"></audio>
+                            {% endif %}
+                        </div>
+                        <div class="track-actions">
+                            {% if is_premium %}
+                            <button class="play-track-btn" data-uri="spotify:track:{{ track.id }}">Play</button>
+                            {% endif %}
+                            <a href="{{ track.spotify_url }}" target="_blank" class="btn outline-btn spotify-link">Open in Spotify</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Songs recommended based on your mood using Spotify.</p>
+            {% if not is_premium %}
+            <p class="premium-notice">To play songs directly in Moodify, you need a <a href="https://www.spotify.com/premium/" target="_blank">Spotify Premium</a> account.</p>
+            {% endif %}
+        </footer>
+    </div>
+
+    <!-- Pass data to JavaScript -->
+    <script>
+        window.appData = {
+            isPremium: "{{ is_premium | lower }}",
+            mood: "{{ mood }}"
+        };
+    </script>
+    <!-- No need to load the SDK here, our JS will handle it -->
+    <script src="{{ url_for('static', filename='javascript/song.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+/* Base styles - Same as index.css */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: #666;
+    margin-right: 20px;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.back-btn:hover {
+    color: #1DB954;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #1DB954; /* Spotify green */
+}
+
+/* Mood section */
+.mood-section {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.mood-text {
+    color: #1DB954;
+    text-transform: capitalize;
+}
+
+.user-input {
+    font-style: italic;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* Player controls */
+.player-controls {
+    background-color: #191414; /* Spotify black */
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+#spotify-player {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.player-btn {
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.player-btn:hover {
+    transform: scale(1.05);
+}
+
+.primary-btn {
+    background-color: #1DB954;
+    color: white;
+}
+
+/* Premium notice */
+.premium-notice {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Tracks list */
+.tracks-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.track-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.track-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.track-card.playing {
+    border: 2px solid #1DB954;
+}
+
+.track-image {
+    height: 180px;
+    overflow: hidden;
+}
+
+.track-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-image {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0e0e0;
+    font-size: 3rem;
+    color: #999;
+}
+
+.track-info {
+    padding: 15px;
+}
+
+.track-name {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-artist, .track-album {
+    color: #666;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-actions {
+    padding: 0 15px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
