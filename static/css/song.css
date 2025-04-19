@@ -184,3 +184,129 @@ h1 {
     flex-direction: column;
     gap: 10px;
 }
+.player-display-large {
+    background: #f7f7f7;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.now-playing-large {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.track-image-large {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    color: #666;
+}
+
+.track-image-large.no-album-art {
+    background-color: #eee;
+}
+
+.track-info-large {
+    flex-grow: 1;
+}
+
+.track-name-large {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.track-artist-large {
+    color: #666;
+    font-size: 1em;
+}
+
+.player-controls-large {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.large-btn {
+    font-size: 1.5em;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.player-progress-large {
+    width: 100%;
+}
+
+.large-bar {
+    background: #ddd;
+    height: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.large-filled {
+    background-color: #1DB954;
+    height: 8px;
+    border-radius: 4px;
+    width: 0%;
+}
+/* Mood Filters Section */
+.filters-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.filters-section h3 {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.mood-filters {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 10px; /* Space between the buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+.mood-filter {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.mood-filter:hover {
+    background-color: #e0e0e0;
+    border-color: #bbb;
+}
+
+.mood-filter.active {
+    background-color: #1DB954;
+    color: white;
+    border-color: #1DB954;
+}
+
+.mood-filter.active:hover {
+    background-color: #1ED760;
+    border-color: #1ED760;
+}

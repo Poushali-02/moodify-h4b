@@ -141,3 +141,36 @@ footer p {
         padding: 20px;
     }
 }
+.mood-suggestions {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.mood-suggestions p {
+    color: #777;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.suggestions-list {
+    display: flex;
+    flex-wrap: wrap; /* Allow suggestions to wrap to the next line */
+    gap: 8px; /* Space between the pills */
+    justify-content: center; /* Center the pills horizontally */
+}
+
+.suggestion-pill {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    border-radius: 50px;
+    padding: 8px 15px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 5px; /* Add a little margin below each pill */
+}
+
+.suggestion-pill:hover {
+    background-color: #ccc;
+}
