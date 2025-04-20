@@ -194,11 +194,18 @@ def check_user_premium(sp:Spotify):
     return False
 
 def get_track_info(track):
+    artists = track.get('artists', [])
+    artist_names = ', '.join([artist.get('name', 'Unknown Artist') for artist in artists])
+    album = track.get('album', {})
+    images = album.get('images', [])
+    album_art_url = images[0].get('url') if images and images[0] else None
+    external_urls = track.get('external_urls', {})
+
     return {
         'name': track['name'],
-        'artist': ', '.join([artist['name'] for artist in track['artists']]),
-        'album': track['album']['name'],
-        'image': track['album']['images'][0]['url'] if track['album']['images'] else None,
+        'artist': artist_names,
+        'album': album.get('name', 'Unknown Album'),
+        'image': album_art_url,
         'preview_url': track.get('preview_url'), # Ensure this is included
-        'spotify_url': track['external_urls']['spotify']
+        'spotify_url': external_urls.get('spotify')
     }

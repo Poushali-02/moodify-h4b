@@ -47,6 +47,8 @@ def callback():
         token_info = spotify.access_token(code)
         sp = spotify.get_spotify_client(token_info['access_token'])
         user_info = sp.me()
+        
+        # Store user session information
         session.permanent = True
         session['user_id'] = user_info['id']
         session['access_token'] = token_info['access_token']
@@ -88,22 +90,8 @@ def get_recommendations():
         sp = spotify.get_spotify_client(session['access_token'])
         user_feeling = request.form['mood_text']
         mood_text = detect_mood(user_feeling)  # Call your mood detection function
-        print(f"Mood:{user_feeling}")
-        tracks = spotify.recommendations(sp, mood_text=mood_text, limit=20) or []
-        track_list = []
-        if tracks:
-            for track in tracks:
-                track_info = {
-                    'id': track['id'],
-                    'name': track['name'],
-                    'artist': ', '.join([artist['name'] for artist in track['artists']]),
-                    'album': track['album']['name'],
-                    'preview_url': track.get('preview_url'),
-                    'spotify_url': track['external_urls']['spotify'],
-                    'image': track['album']['images'][0]['url'] if track['album']['images'] else None
-                }
-                track_list.append(track_info)
-        print(f"songs:{track_list}")
+        tracks = spotify.recommendations(sp, mood_text=mood_text,limit=20) or []
+        track_list = [spotify.get_track_info(t) for t in tracks if t]
         return render_template('song.html', tracks=track_list, mood=mood_text, premium_user=spotify.check_user_premium(sp))
     except Exception as e:
         print(f"Recommendation error: {e}")

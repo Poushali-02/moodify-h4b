@@ -128,7 +128,7 @@ async function playTrack(uri) {
 
     try {
         const token = await fetchToken();
-        const response = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
+        const response = await fetch(`https://www.spotify.com/premium/`, {
             method: 'PUT',
             body: JSON.stringify({ uris: [uri] }),
             headers: {
