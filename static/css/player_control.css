@@ -1,0 +1,105 @@
+/* static/css/player_controls.css */
+.fixed-player {
+    position: fixed; /* Sticks to the bottom of the viewport */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #282828; /* Dark background */
+    color: #fff; /* White text color */
+    padding: 15px; /* Spacing inside the player */
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.3); /* Shadow to separate it from the content */
+    display: flex; /* Enables flexbox for layout */
+    align-items: center; /* Vertically align items in the player */
+    justify-content: space-between; /* Space out track info and controls */
+    z-index: 1000; /* Ensures it stays on top of other content */
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px; /* Limits the width on larger screens */
+    margin: 0 auto; /* Centers the content within the fixed player */
+    justify-content: space-between; /* Space out track info and individual controls */
+}
+
+.player-controls .track-info {
+    display: flex;
+    align-items: center;
+}
+
+.player-controls .track-art {
+    width: 50px;
+    height: 50px;
+    background-size: cover; /* Makes the album art cover the container */
+    background-position: center; /* Centers the album art */
+    margin-right: 10px; /* Spacing between art and text */
+    border-radius: 4px; /* Slightly rounded corners for the art */
+    background-color: #333; /* Fallback background color */
+}
+
+.player-controls .track-details {
+    display: flex;
+    flex-direction: column; /* Stack track title and artist vertically */
+    justify-content: center; /* Center the text vertically */
+}
+
+.player-controls .track-title {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 2px; /* Spacing below the title */
+}
+
+.player-controls .track-artist {
+    font-size: 0.8em;
+    color: #b3b3b3; /* Lighter color for the artist */
+}
+
+.player-controls .controls button {
+    background: none; /* Transparent button background */
+    border: none; /* No button border */
+    color: #fff; /* White button icon color */
+    font-size: 1.5em; /* Size of the icons */
+    margin: 0 10px; /* Spacing between the buttons */
+    cursor: pointer; /* Changes cursor to indicate interactivity */
+    outline: none; /* Remove default button outline */
+}
+
+.player-controls .controls button:hover {
+    color: #1ed760; /* Green color on hover (Spotify's accent color) */
+}
+
+/* Modal styles (for error messages) - Included here as it's part of the fixed player area in HTML */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); /* Semi-transparent black background */
+}
+
+.modal-content {
+    background-color: #fefefe; /* White modal background */
+    margin: 15% auto; /* Center the modal vertically and horizontally */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Adjust modal width */
+}
+
+.modal-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: black;
+}

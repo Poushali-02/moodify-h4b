@@ -47,7 +47,8 @@ main {
     justify-content: center;
 }
 
-.mood-input, .login-section {
+.mood-input,
+.login-section {
     background-color: white;
     border-radius: 8px;
     padding: 30px;
@@ -136,27 +137,31 @@ footer p {
     h1 {
         font-size: 2.5rem;
     }
-    
-    .mood-input, .login-section {
+
+    .mood-input,
+    .login-section {
         padding: 20px;
     }
 }
+
+/* Mood Suggestions */
 .mood-suggestions {
-    margin-top: 15px;
+    margin-top: 25px; /* Increased margin for better separation */
     text-align: center;
 }
 
 .mood-suggestions p {
     color: #777;
-    margin-bottom: 8px;
-    font-size: 0.9rem;
+    margin-bottom: 10px; /* Slightly increased margin */
+    font-size: 0.95rem; /* Slightly increased font size */
 }
 
 .suggestions-list {
     display: flex;
-    flex-wrap: wrap; /* Allow suggestions to wrap to the next line */
-    gap: 8px; /* Space between the pills */
-    justify-content: center; /* Center the pills horizontally */
+    flex-wrap: wrap;
+    gap: 10px; /* Increased gap for better spacing */
+    justify-content: center;
+    margin-bottom: 20px; /* Add some margin below the suggestions */
 }
 
 .suggestion-pill {
@@ -164,13 +169,14 @@ footer p {
     color: #333;
     border: none;
     border-radius: 50px;
-    padding: 8px 15px;
-    font-size: 0.85rem;
+    padding: 10px 20px; /* Increased padding for better touch area */
+    font-size: 0.9rem; /* Slightly increased font size */
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-bottom: 5px; /* Add a little margin below each pill */
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out; /* Added transform for a subtle effect */
+    margin-bottom: 8px;
 }
 
 .suggestion-pill:hover {
     background-color: #ccc;
+    transform: scale(1.05); /* Subtle scale on hover */
 }

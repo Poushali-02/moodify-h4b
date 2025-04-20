@@ -5,23 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moodify - Your {{ mood }} Songs</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/song.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/player_controls.css') }}">
 </head>
 <body>
     <div class="container">
         <header>
-            <a href="{{ url_for('main') }}" class="back-btn">← Back</a>
+            <a href="{{ url_for('index') }}" class="back-btn">← Back</a>
             <h1>Moodify</h1>
         </header>
 
         <div class="mood-section">
             <h2>Songs for your mood: <span class="mood-text">{{ mood }}</span></h2>
+            {% if mood_text %}
             <p class="user-input">"{{ mood_text }}"</p>
+            {% endif %}
         </div>
 
         <main>
-            <!-- Player will be dynamically populated by JS -->
-            <div id="spotify-player" class="player-area"></div>
-
             <div class="tracks-container">
                 <div class="tracks-list">
                     {% for track in tracks %}
@@ -43,7 +44,9 @@
                         </div>
                         <div class="track-actions">
                             {% if is_premium %}
-                            <button class="play-track-btn" data-uri="spotify:track:{{ track.id }}">Play</button>
+                            <button class="icon-button play-recommendation-btn" data-uri="{{ track.spotify_url }}" title="Play on Spotify">
+                                <i class="fas fa-play"></i>
+                            </button>
                             {% endif %}
                             <a href="{{ track.spotify_url }}" target="_blank" class="btn outline-btn spotify-link">Open in Spotify</a>
                         </div>
@@ -51,24 +54,49 @@
                     {% endfor %}
                 </div>
             </div>
+
+            {% if premium_user and tracks %}
+            <div class="fixed-player">
+                <div class="player-controls">
+                    <div class="track-info">
+                        <div class="track-art"></div>
+                        <div class="track-details">
+                            <div class="track-title"></div>
+                            <div class="track-artist"></div>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button class="prev-track-btn"><i class="fas fa-backward"></i></button>
+                        <button class="play-pause-btn"><i class="fas fa-play"></i></button>
+                        <button class="next-track-btn"><i class="fas fa-forward"></i></button>
+                    </div>
+                </div>
+                <div id="error-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="modal-close">×</span>
+                        <p id="error-message"></p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </main>
 
         <footer>
             <p>Songs recommended based on your mood using Spotify.</p>
-            {% if not is_premium %}
+            {% if not premium_user %}
             <p class="premium-notice">To play songs directly in Moodify, you need a <a href="https://www.spotify.com/premium/" target="_blank">Spotify Premium</a> account.</p>
             {% endif %}
         </footer>
     </div>
 
-    <!-- Pass data to JavaScript -->
     <script>
         window.appData = {
-            isPremium: "{{ is_premium | lower }}",
-            mood: "{{ mood }}"
+            isPremium: "{{ premium_user | lower }}",
+            mood: "{{ mood }}",
+            accessToken: "{{ access_token }}"
         };
     </script>
-    <!-- No need to load the SDK here, our JS will handle it -->
+    <script src="https://sdk.scdn.co/spotify-player.js" async></script>
     <script src="{{ url_for('static', filename='javascript/song.js') }}"></script>
 </body>
 </html>
