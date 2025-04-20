@@ -17,8 +17,13 @@
             {% if is_authenticated %}
                 <div class="mood-input">
                     <h2>How are you feeling today?</h2>
-                    <form action="{{ url_for('process_mood') }}" method="post">
+                    <form action="{{ url_for('get_recommendations') }}" method="post">
                         <textarea name="mood_text" id="mood_text" rows="4" placeholder="Describe how you're feeling..."></textarea>
+                        <div class="mood-suggestions">
+                            <p>Or try a quick suggestion:</p>
+                            <div class="suggestions-list">
+                                </div>
+                        </div>
                         <button type="submit" class="btn primary-btn">Find My Music</button>
                     </form>
                 </div>
